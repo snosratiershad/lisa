@@ -228,27 +228,83 @@
                 </EndPoints>
                 <DataDisk>
                     <LUN>0</LUN>
-                    <DiskSizeInGB>1863</DiskSizeInGB>
+                    <DiskSizeInGB>1023</DiskSizeInGB>
                     <HostCaching>None</HostCaching>
                 </DataDisk>
                 <DataDisk>
                     <LUN>1</LUN>
-                    <DiskSizeInGB>1863</DiskSizeInGB>
+                    <DiskSizeInGB>1023</DiskSizeInGB>
                     <HostCaching>None</HostCaching>
                 </DataDisk>
                 <DataDisk>
                     <LUN>2</LUN>
-                    <DiskSizeInGB>1863</DiskSizeInGB>
+                    <DiskSizeInGB>1023</DiskSizeInGB>
                     <HostCaching>None</HostCaching>
                 </DataDisk>
                 <DataDisk>
                     <LUN>3</LUN>
-                    <DiskSizeInGB>1863</DiskSizeInGB>
+                    <DiskSizeInGB>1023</DiskSizeInGB>
                     <HostCaching>None</HostCaching>
                 </DataDisk>
             </VirtualMachine>
         </ResourceGroup>
     </OneVM4Disk>
+    <OneVM8Disk>
+        <isDeployed>NO</isDeployed>
+        <ResourceGroup>
+            <VirtualMachine>
+                <state></state>
+                <InstanceSize>Standard_F16</InstanceSize>
+                <RoleName></RoleName>
+                <EndPoints>
+                    <Name>SSH</Name>
+                    <Protocol>tcp</Protocol>
+                    <LocalPort>22</LocalPort>
+                    <PublicPort>22</PublicPort>
+                </EndPoints>
+                <DataDisk>
+                    <LUN>0</LUN>
+                    <DiskSizeInGB>1023</DiskSizeInGB>
+                    <HostCaching>None</HostCaching>
+                </DataDisk>
+                <DataDisk>
+                    <LUN>1</LUN>
+                    <DiskSizeInGB>1023</DiskSizeInGB>
+                    <HostCaching>None</HostCaching>
+                </DataDisk>
+                <DataDisk>
+                    <LUN>2</LUN>
+                    <DiskSizeInGB>1023</DiskSizeInGB>
+                    <HostCaching>None</HostCaching>
+                </DataDisk>
+                <DataDisk>
+                    <LUN>3</LUN>
+                    <DiskSizeInGB>1023</DiskSizeInGB>
+                    <HostCaching>None</HostCaching>
+                </DataDisk>
+                <DataDisk>
+                    <LUN>0</LUN>
+                    <DiskSizeInGB>1023</DiskSizeInGB>
+                    <HostCaching>None</HostCaching>
+                </DataDisk>
+                <DataDisk>
+                    <LUN>1</LUN>
+                    <DiskSizeInGB>1023</DiskSizeInGB>
+                    <HostCaching>None</HostCaching>
+                </DataDisk>
+                <DataDisk>
+                    <LUN>2</LUN>
+                    <DiskSizeInGB>1023</DiskSizeInGB>
+                    <HostCaching>None</HostCaching>
+                </DataDisk>
+                <DataDisk>
+                    <LUN>3</LUN>
+                    <DiskSizeInGB>1023</DiskSizeInGB>
+                    <HostCaching>None</HostCaching>
+                </DataDisk>
+            </VirtualMachine>
+        </ResourceGroup>
+    </OneVM8Disk>	
     <OneVM6DiskNested>
         <isDeployed>NO</isDeployed>
         <ResourceGroup>
