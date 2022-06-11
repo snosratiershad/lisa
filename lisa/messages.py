@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
 from decimal import Decimal
 from enum import Enum
@@ -29,6 +29,26 @@ TestRunStatus = Enum(
     ],
 )
 
+TestStatus = Enum(
+    "TestStatus",
+    [
+        # A test result is created, but not assigned to any running queue.
+        "QUEUED",
+        # A test result is assigned to an environment, may be run later or not
+        # able to run. It may be returned to QUEUED status, if the environment
+        # doesn't fit this case.
+        "ASSIGNED",
+        # A test result is running
+        "RUNNING",
+        "FAILED",
+        "PASSED",
+        # A test result is skipped, won't be run anymore.
+        "SKIPPED",
+        # A test result is failed with known issue.
+        "ATTEMPTED",
+    ],
+)
+
 
 @dataclass
 class TestRunMessage(MessageBase):
@@ -40,6 +60,36 @@ class TestRunMessage(MessageBase):
     tags: Optional[List[str]] = None
     run_name: str = ""
     message: str = ""
+
+
+@dataclass
+class TestResultMessageBase(MessageBase):
+    type: str = "TestResultMessageBase"
+    name: str = ""
+    suite_name: str = ""
+    status: TestStatus = TestStatus.QUEUED
+    information: Dict[str, str] = field(default_factory=dict)
+
+
+@dataclass
+class TestResultMessage(TestResultMessageBase):
+    # id is used to identify the unique test result
+    id_: str = ""
+    type: str = "TestResult"
+    full_name: str = ""
+    suite_full_name: str = ""
+    message: str = ""
+    log_file: str = ""
+    stacktrace: Optional[str] = None
+
+    @property
+    def is_completed(self) -> bool:
+        return _is_completed_status(self.status)
+
+
+@dataclass
+class CommunityTestMessage(TestResultMessageBase):
+    type: str = "CommunityTestResult"
 
 
 class NetworkProtocol(str, Enum):
@@ -175,6 +225,15 @@ class NetworkUDPPerformanceMessage(PerfMessage):
     rx_throughput_in_gbps: Decimal = Decimal(0)
     data_loss: Decimal = Decimal(0)
     packet_size_kbytes: Decimal = Decimal(0)
+
+
+def _is_completed_status(status: TestStatus) -> bool:
+    return status in [
+        TestStatus.FAILED,
+        TestStatus.PASSED,
+        TestStatus.SKIPPED,
+        TestStatus.ATTEMPTED,
+    ]
 
 
 def create_message(
