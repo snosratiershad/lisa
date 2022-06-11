@@ -63,6 +63,10 @@ class Git(Tool):
         if get_matched_str(result.stdout, self.CERTIFICATE_ISSUE_PATTERN):
             self.run("config --global http.sslverify false")
             result = self.run(cmd, cwd=cwd, no_error_log=True, force_run=True)
+
+        # mark directory safe
+        self._mark_safe(cwd)
+
         if result.exit_code == 0:
             output = result.stderr
             if not output:
@@ -215,3 +219,6 @@ class Git(Tool):
             return tags[-1]
         else:
             return tags[0]
+
+    def _mark_safe(self, cwd: pathlib.PurePath) -> None:
+        self.run(f"config --global --add safe.directory {cwd}", cwd=cwd)
