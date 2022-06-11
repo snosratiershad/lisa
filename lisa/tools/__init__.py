@@ -44,6 +44,7 @@ from .make import Make
 from .mdadm import Mdadm
 from .mkdir import Mkdir
 from .mkfs import FileSystem, Mkfs, Mkfsext, Mkfsxfs
+from .mkswap import MkSwap
 from .modinfo import Modinfo
 from .modprobe import Modprobe
 from .mount import Mount
@@ -135,6 +136,7 @@ __all__ = [
     "Mdadm",
     "Mkdir",
     "Mkfs",
+    "MkSwap",
     "Mkfsext",
     "Mkfsxfs",
     "Modinfo",
